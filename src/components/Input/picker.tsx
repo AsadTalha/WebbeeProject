@@ -2,6 +2,18 @@ import React, { Component, useState } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { View, Button, Text } from "react-native-ui-lib"
 
+import { Dropdown } from 'react-native-element-dropdown';
+
+const data = [
+    { label: 'Item 1', value: '1' },
+    { label: 'Item 2', value: '2' },
+    { label: 'Item 3', value: '3' },
+    { label: 'Item 4', value: '4' },
+    { label: 'Item 5', value: '5' },
+    { label: 'Item 6', value: '6' },
+    { label: 'Item 7', value: '7' },
+    { label: 'Item 8', value: '8' },
+];
 type CustomePickerType = {
     onSelect: (value: string) => void
     FieldTypesArray: any,
@@ -17,6 +29,32 @@ const CustomePicker = ({ onSelect, FieldTypesArray, buttonText }: CustomePickerT
         setShowMosal(false)
         onSelect(value)
     }
+    const newData = FieldTypesArray.map((ele: any) => { return ({ label: ele, value: ele }) })
+
+    return (
+        <Dropdown
+            style={styles.button}
+            placeholderStyle={styles.selectedTextStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            //   inputSearchStyle={styles.inputSearchStyle}
+            iconColor={"#275070"}
+            data={newData}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder={buttonText}
+            searchPlaceholder="Search..."
+            value={buttonText}
+            itemTextStyle={styles.itemTextStyle}
+            onChange={item => {
+                // setValue(item.value);
+                // setIsFocus(false);
+                selectValue(item.value)
+            }}
+            renderLeftIcon={() => <Text></Text>}
+            search={false}
+        />
+    )
 
     return (
         <View style={styles.container}>
@@ -50,6 +88,13 @@ const CustomePicker = ({ onSelect, FieldTypesArray, buttonText }: CustomePickerT
 
 const styles = StyleSheet.create({
     container: { flex: 1, position: 'relative', width: '100%' },
+    button: {
+        backgroundColor: "#275070",
+        height: 45,
+        marginBottom: 10,
+        width: '100%',
+        borderRadius: 8
+    },
     modalContainer: {
         flex: 1,
         width: '100%',
@@ -61,6 +106,15 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#275070'
     },
+    iconStyle: {
+        color: "#275070"
+    },
+    selectedTextStyle: {
+        color: 'white',
+        fontWeight: '400',
+        textAlign: 'center',
+        marginRight: -15
+    },
     dropDownItem: {
         height: 45,
         flex: 1,
@@ -70,6 +124,10 @@ const styles = StyleSheet.create({
         borderBottomColor: '#275070',
     },
     dropDownItemText: {
+        fontWeight: '600',
+        color: '#275070',
+    },
+    itemTextStyle: {
         fontWeight: '600',
         color: '#275070',
     }

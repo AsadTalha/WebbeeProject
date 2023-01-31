@@ -4,10 +4,11 @@ import { View, Button, Text } from "react-native-ui-lib"
 
 type CustomePickerType = {
     onSelect: (value: string) => void
-    FieldTypesArray: any
+    FieldTypesArray: any,
+    buttonText: string
 }
 
-const CustomePicker = ({ onSelect, FieldTypesArray }: CustomePickerType) => {
+const CustomePicker = ({ onSelect, FieldTypesArray, buttonText }: CustomePickerType) => {
     const [showModal, setShowMosal] = useState(false);
     const [selectedValue, setSelectedValue] = useState('');
 
@@ -21,7 +22,7 @@ const CustomePicker = ({ onSelect, FieldTypesArray }: CustomePickerType) => {
         <View style={styles.container}>
             <Button
                 backgroundColor="#275070"
-                label={"Add Field"}
+                label={buttonText}
                 borderRadius={7}
                 style={{ height: 45, marginBottom: 10, width: '100%' }}
                 onPress={() => setShowMosal(true)}

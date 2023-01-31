@@ -35,7 +35,6 @@ const CategoryScreen = ({ name, navigation }: LoginProps) => {
         dispatch(update(data))
     }
 
-    console.log(category)
     return (
         <ScrollView style={styles.container}>
             <Header title={"Categories"} onClickHandler={addNewCategory} />

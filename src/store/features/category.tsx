@@ -28,13 +28,10 @@ const categorySlice = createSlice({
             return newArr;
         },
         update: (state, action: PayloadAction<Category>) => {
-            console.log('action.payload ==============>', action.payload)
-            const current = state
+            const current = state;
             const index = state.map(e => e.categoryId).indexOf(action.payload.categoryId);
             current[index] = action.payload;
-            console.log('index', index)
-            console.log('current', current)
-            return current
+            return current;
             //state.push(action.payload)
         },
     }

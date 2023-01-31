@@ -21,15 +21,12 @@ type FormType = {
 }
 
 const Form = ({ removeCategory, updateCategory, data, index }: FormType) => {
-    const [fields, setFields] = useState<FieldType[]>([])
-    const [render, setRender] = useState<boolean>(false)
-    const [CategoryTitle, setCategoryTitle] = useState<string>('')
 
-    //====================================================
     const updateCategoryTitle = (value: string) => {
-        setCategoryTitle(value)
-    }
-    //====================new=============================
+        const newData = JSON.parse(JSON.stringify(data));
+        newData['name'] = value;
+        updateCategory(newData);
+    };
     const addDataToField: (index: number, value: string) => void =
         (index: number, value: string) => {
             const newData = JSON.parse(JSON.stringify(data));
@@ -55,16 +52,15 @@ const Form = ({ removeCategory, updateCategory, data, index }: FormType) => {
     const handleRemoveCategory = () => {
         removeCategory(data.categoryId || '')
     }
-    //====================================================
 
     return (
         <View style={styles.container}>
             <View style={styles.CategoryTitlecontainer}>
-                <Text style={styles.categoryTitle}>{CategoryTitle || "Category Name"}</Text>
+                <Text style={styles.categoryTitle}>{data.name || "Category Name"}</Text>
                 <InputWithLable
                     handleChange={updateCategoryTitle}
                     placeHolder="Field"
-                    lable={CategoryTitle}
+                    lable={data.name}
 
                 />
             </View>
@@ -87,7 +83,11 @@ const Form = ({ removeCategory, updateCategory, data, index }: FormType) => {
             <View>
                 <View style={[styles.btnContainer, { zIndex: 22 - index }]}>
                     <View style={{ height: 45, marginBottom: 10, width: '46%' }}>
-                        <CustomePicker onSelect={addNewFiled} FieldTypesArray={FieldTypesArray} />
+                        <CustomePicker
+                            buttonText={"Add Field"}
+                            onSelect={addNewFiled}
+                            FieldTypesArray={FieldTypesArray}
+                        />
                     </View>
 
                     <Button
@@ -98,12 +98,17 @@ const Form = ({ removeCategory, updateCategory, data, index }: FormType) => {
                         onPress={handleRemoveCategory}
                     />
                 </View>
-                <Button
+                {/* <Button
                     backgroundColor="#275070"
                     label="Select title"
                     borderRadius={7}
                     style={{ height: 45, marginBottom: 10, fontWeight: 600 }}
-                    onPress={() => console.log(fields)}
+                    onPress={() => console.log({})}
+                /> */}
+                <CustomePicker
+                    buttonText={"Select Title"}
+                    onSelect={addNewFiled}
+                    FieldTypesArray={FieldTypesArray}
                 />
 
             </View>

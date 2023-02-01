@@ -2,7 +2,8 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView
+    ScrollView,
+    Text
 } from 'react-native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 
@@ -56,7 +57,9 @@ const CategoryScreen = ({ name, navigation }: LoginProps) => {
                                     />
                                 </View>
                             )
-                        }) : null
+                        }) : <View style={styles.errorContainer}>
+                            <Text style={styles.errorText}>No categories available</Text>
+                        </View>
                 }
                 <View style={styles.margin} />
             </ScrollView>
@@ -75,6 +78,19 @@ const styles = StyleSheet.create({
     },
     margin: {
         height: 100
+    },
+    errorContainer: {
+        display: 'flex',
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        paddingHorizontal: 20
+    },
+    errorText: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#DC4A9A'
     }
 });
 

@@ -12,11 +12,12 @@ import Header from "../../components/Header";
 import CategoryElementForm from "../../components/CategoryElementForm"
 
 interface LoginProps {
-    categoryId: string,
-    name?: string,
+    navigation: any,
+    route: any
 }
 
-const CategoryElements = ({ name, categoryId }: LoginProps) => {
+const CategoryElements = ({ navigation, route }: LoginProps) => {
+    const { categoryId, name } = route.params;
     const dispatch = useAppDispatch();
     const category: Category[] = useAppSelector(state => state.category.filter((ele: any) => ele.categoryId === categoryId));
     const elements = useAppSelector(state => state.element.filter((ele: any) => ele.categoryId === categoryId))
@@ -68,7 +69,9 @@ const CategoryElements = ({ name, categoryId }: LoginProps) => {
                                     />
                                 </View>
                             )
-                        }) : <View><Text>No Elements in this category</Text></View>
+                        }) : <View style={styles.errorContainer}>
+                            <Text style={styles.errorText}>No Elements available</Text>
+                        </View>
                 }
                 <View style={styles.margin} />
             </ScrollView>
@@ -87,6 +90,19 @@ const styles = StyleSheet.create({
     },
     margin: {
         height: 100
+    },
+    errorContainer: {
+        display: 'flex',
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        paddingHorizontal: 20
+    },
+    errorText: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#DC4A9A'
     }
 });
 export default CategoryElements;

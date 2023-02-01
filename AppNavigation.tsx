@@ -24,12 +24,8 @@ export default function AppNavigation() {
                                 <Drawer.Screen
                                     key={ele.name || ele.categoryId}
                                     name={ele.name || ele.categoryId}
-                                    component={() =>
-                                        <CategoryElements
-                                            categoryId={ele.categoryId}
-                                            name={ele.name || ele.categoryId}
-                                        />
-                                    }
+                                    initialParams={{ categoryId: ele.categoryId, name: ele.name }}
+                                    component={CategoryElements}
                                 />
                             )
                         }) : null

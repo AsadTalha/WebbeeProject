@@ -6,7 +6,7 @@ import Categoryinput from "../Input/CategoryInput";
 import InputWithLable from "../Input/InputWithLable";
 import CustomePicker from "../Input/picker"
 import { FieldTypesArray } from "../../commons/emuns";
-import { Category } from "../../store/features/category";
+import { Category, Field } from "../../store/features/category";
 
 type FieldType = {
     lable: string,
@@ -52,7 +52,13 @@ const Form = ({ removeCategory, updateCategory, data, index }: FormType) => {
     const handleRemoveCategory = () => {
         removeCategory(data.categoryId || '')
     }
+    const handleTitleUpdate = (value: string) => {
+        const newData = JSON.parse(JSON.stringify(data));
+        newData['customeTitle'] = value;
+        updateCategory(newData);
+    }
 
+    const titleArray: string[] = data.fields.map((ele: Field) => { return (ele.lable) })
     return (
         <View style={styles.container}>
             <View style={styles.CategoryTitlecontainer}>
@@ -106,9 +112,9 @@ const Form = ({ removeCategory, updateCategory, data, index }: FormType) => {
                     onPress={() => console.log({})}
                 /> */}
                 <CustomePicker
-                    buttonText={"Select Title"}
-                    onSelect={addNewFiled}
-                    FieldTypesArray={FieldTypesArray}
+                    buttonText={`Select Title: ${data.customeTitle || data?.fields[0]?.lable || ''}`}
+                    onSelect={handleTitleUpdate}
+                    FieldTypesArray={titleArray}
                 />
 
             </View>

@@ -36,25 +36,27 @@ const CategoryScreen = ({ name, navigation }: LoginProps) => {
     }
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <Header title={"Categories"} onClickHandler={addNewCategory} />
-            {
-                category.length ?
-                    category.map((ele: Category, index: number) => {
-                        return (
-                            <View key={ele.categoryId} style={styles.formContainer}>
-                                <Form
-                                    data={ele}
-                                    updateCategory={updateCategory}
-                                    removeCategory={removeCategory}
-                                    index={index}
-                                />
-                            </View>
-                        )
-                    }) : null
-            }
-
-        </ScrollView>
+            <ScrollView >
+                {
+                    category.length ?
+                        category.map((ele: Category, index: number) => {
+                            return (
+                                <View key={ele.categoryId} style={styles.formContainer}>
+                                    <Form
+                                        data={ele}
+                                        updateCategory={updateCategory}
+                                        removeCategory={removeCategory}
+                                        index={index}
+                                    />
+                                </View>
+                            )
+                        }) : null
+                }
+                <View style={styles.margin} />
+            </ScrollView>
+        </View>
     );
 };
 
@@ -65,6 +67,9 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         marginBottom: 16
+    },
+    margin: {
+        height: 100
     }
 });
 

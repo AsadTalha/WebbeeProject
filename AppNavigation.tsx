@@ -21,7 +21,7 @@ export default function AppNavigation() {
                     category?.length ?
                         category.map((ele: any) => {
                             return (
-                                <Drawer.Screen name={ele.name || ele.categoryId} component={Category} />
+                                <Drawer.Screen key={ele.name || ele.categoryId} name={ele.name || ele.categoryId} component={Category} />
                             )
                         }) : null
                 }

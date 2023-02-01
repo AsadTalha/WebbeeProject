@@ -1,6 +1,6 @@
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
-type Field = {
+export type Field = {
     type: string,
     lable: string,
 }

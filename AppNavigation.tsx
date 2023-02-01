@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from "./src/store/hooks";
 
 
 import Dashboard from './src/screens/Dashboard';
-// import CreateCategory from './src/screens/CreateCategory';
+import CategoryElements from './src/screens/CategoryElements';
 import Category from './src/screens/Category';
 
 const Drawer = createDrawerNavigator();
@@ -21,7 +21,16 @@ export default function AppNavigation() {
                     category?.length ?
                         category.map((ele: any) => {
                             return (
-                                <Drawer.Screen key={ele.name || ele.categoryId} name={ele.name || ele.categoryId} component={Category} />
+                                <Drawer.Screen
+                                    key={ele.name || ele.categoryId}
+                                    name={ele.name || ele.categoryId}
+                                    component={() =>
+                                        <CategoryElements
+                                            categoryId={ele.categoryId}
+                                            name={ele.name || ele.categoryId}
+                                        />
+                                    }
+                                />
                             )
                         }) : null
                 }

@@ -7,6 +7,8 @@ import storage from 'redux-persist/lib/storage'
 
 import countReducer from './features/counter';
 import categorySlice from './features/category';
+import elementSlice from './features/element';
+
 
 const persistConfig = {
     key: 'root',
@@ -15,7 +17,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     counter: countReducer,
-    category: categorySlice
+    category: categorySlice,
+    element: elementSlice,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

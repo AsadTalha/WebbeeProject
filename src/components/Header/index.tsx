@@ -4,9 +4,10 @@ import { Button } from "react-native-ui-lib"
 type HeaderProps = {
     title: string,
     onClickHandler: any
+    lable: string
 }
 
-const Header = ({ title, onClickHandler }: HeaderProps) => {
+const Header = ({ title, onClickHandler, lable }: HeaderProps) => {
     return (
         <View style={styles.container}>
             <View>
@@ -15,7 +16,7 @@ const Header = ({ title, onClickHandler }: HeaderProps) => {
             <View>
                 <Button
                     backgroundColor="#275070"
-                    label="Add New Category"
+                    label={lable}
                     borderRadius={7}
                     style={{ height: 45 }}
                     onPress={onClickHandler}

@@ -4,7 +4,7 @@ import { View, Button, Text } from "react-native-ui-lib"
 
 import Categoryinput from "../Input/CategoryInput";
 import InputWithLable from "../Input/InputWithLable";
-import CustomePicker from "../Input/picker"
+import CustomePicker from "../Input/picker";
 import { FieldTypesArray } from "../../commons/emuns";
 import { Category, Field } from "../../store/features/category";
 
@@ -20,9 +20,9 @@ type FormType = {
     index: number
 }
 
-const Form = ({ removeCategory, updateCategory, data, index }: FormType) => {
+const CategoryForm = ({ removeCategory, updateCategory, data, index }: FormType) => {
 
-    const updateCategoryTitle = (value: string) => {
+    const updateCategoryTitle = (index: number, value: string) => {
         const newData = JSON.parse(JSON.stringify(data));
         newData['name'] = value;
         updateCategory(newData);
@@ -67,7 +67,7 @@ const Form = ({ removeCategory, updateCategory, data, index }: FormType) => {
                     handleChange={updateCategoryTitle}
                     placeHolder="Field"
                     lable={data.name}
-
+                    index={0}
                 />
             </View>
             {
@@ -143,4 +143,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Form;
+export default CategoryForm;

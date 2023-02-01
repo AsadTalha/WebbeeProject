@@ -2,12 +2,14 @@ import { View, StyleSheet, Text, TextInput } from "react-native"
 
 
 type InputWithLableProps = {
-    handleChange?: (value: string) => void,
+    handleChange?: (index: number, value: any) => void,
     placeHolder?: string,
     lable: string,
+    isNumeric?: boolean,
+    index: number
 }
 
-const InputWithLable = ({ handleChange, lable, placeHolder }: InputWithLableProps) => {
+const InputWithLable = ({ handleChange, lable, placeHolder, isNumeric, index }: InputWithLableProps) => {
 
 
     return (
@@ -16,10 +18,10 @@ const InputWithLable = ({ handleChange, lable, placeHolder }: InputWithLableProp
                 <Text style={styles.placeHolderText}>{placeHolder}</Text>
             </View> : null}
             <TextInput
-                onChangeText={(e) => handleChange && handleChange(e)}
+                onChangeText={(e) => handleChange && handleChange(index, isNumeric ? e.replace(/[^0-9]/g, '') : e)}
                 value={lable}
                 placeholder="Enter"
-                keyboardType="numeric"
+                keyboardType={isNumeric ? "numeric" : "default"}
                 style={styles.input}
             />
         </View>

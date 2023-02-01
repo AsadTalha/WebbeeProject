@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 
-import Form from '../../components/CreateNewForm';
+import CategoryForm from '../../components/CategoryForm';
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { addEmpty, remove, Category, update } from "../../store/features/category";
 import Header from "../../components/Header";
@@ -37,14 +37,18 @@ const CategoryScreen = ({ name, navigation }: LoginProps) => {
 
     return (
         <View style={styles.container}>
-            <Header title={"Categories"} onClickHandler={addNewCategory} />
+            <Header
+                title={"Categories"}
+                onClickHandler={addNewCategory}
+                lable={"Add New Category"}
+            />
             <ScrollView >
                 {
                     category.length ?
                         category.map((ele: Category, index: number) => {
                             return (
                                 <View key={ele.categoryId} style={styles.formContainer}>
-                                    <Form
+                                    <CategoryForm
                                         data={ele}
                                         updateCategory={updateCategory}
                                         removeCategory={removeCategory}
@@ -63,6 +67,7 @@ const CategoryScreen = ({ name, navigation }: LoginProps) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#ffffff',
+        minHeight: '100%',
         padding: 10
     },
     formContainer: {

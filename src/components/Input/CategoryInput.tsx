@@ -17,7 +17,7 @@ type LabledInputProps = {
 
 const Categoryinput = ({ onChangeText, data, index, reMoveField }: LabledInputProps) => {
 
-    const handleChange = (value: string) => {
+    const _handleChange = (index: number, value: string) => {
         onChangeText(index, value)
     };
 
@@ -25,10 +25,10 @@ const Categoryinput = ({ onChangeText, data, index, reMoveField }: LabledInputPr
         <View style={styles.container}>
             <View style={styles.secion1}>
                 <InputWithLable
-                    handleChange={handleChange}
+                    handleChange={_handleChange}
                     placeHolder="Field"
                     lable={data.lable}
-
+                    index={index}
                 />
             </View>
             <View style={styles.secion2}>

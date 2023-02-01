@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet } from 'react-native';
 import { View, Button, Text } from "react-native-ui-lib"
 import InputWithLable from "../Input/InputWithLable";
@@ -16,7 +16,21 @@ type FormType = {
     index: number,
     category: any
 }
-const CategoryElementForm = ({ removeCategory, updateCategory, elementData, index, category }: FormType) => {
+
+const getTitle = (value: any) => {
+    if (!value) {
+        return "Title"
+    } else if (typeof value === "string") {
+        return value
+    } else if (value instanceof Date) {
+        return value.toISOString().substring(0, 10);
+    }
+}
+
+const CategoryElementForm = ({
+    removeCategory, updateCategory, elementData, index, category
+}: FormType) => {
+
     const addDataToField: (index: number, value: any) => void =
         (index: number, value: string) => {
             const newData = JSON.parse(JSON.stringify(elementData));
@@ -34,7 +48,7 @@ const CategoryElementForm = ({ removeCategory, updateCategory, elementData, inde
         <View style={styles.container}>
             {
                 title && titleValue && titleValue[0] && titleValue[0].value ?
-                    <Text style={styles.categoryTitle}>{title} : {titleValue[0].value}</Text> :
+                    <Text style={styles.categoryTitle}>{title} : {getTitle(titleValue[0].value)}</Text> :
                     <Text style={styles.categoryTitle}>Title</Text>
             }
 

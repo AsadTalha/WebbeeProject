@@ -65,7 +65,7 @@ const CategoryForm = ({ removeCategory, updateCategory, data, index }: FormType)
                 <Text style={styles.categoryTitle}>{data.name || "Category Name"}</Text>
                 <InputWithLable
                     handleChange={updateCategoryTitle}
-                    placeHolder="Field"
+                    placeHolder="Name"
                     lable={data.name}
                     index={0}
                 />

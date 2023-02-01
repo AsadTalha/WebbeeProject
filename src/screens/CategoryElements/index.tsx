@@ -25,6 +25,7 @@ const CategoryElements = ({ navigation, route }: LoginProps) => {
     const addNewElement = () => {
         if (category[0]) {
             const fields: Field[] = category[0].fields;
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~', fields)
             const elementFields: TypeElementField[] =
                 fields.map((ele: Field) => {
                     return { type: ele.type, value: '', lable: ele.lable }

@@ -19,11 +19,11 @@ export default function AppNavigation() {
                 <Drawer.Screen name="Dashboard" component={Dashboard} />
                 {
                     category?.length ?
-                        category.map((ele: any) => {
+                        category.map((ele: any, index: number) => {
                             return (
                                 <Drawer.Screen
                                     key={ele.name || ele.categoryId}
-                                    name={ele.name || ele.categoryId}
+                                    name={ele.name === "Category Name" ? ele.categoryId : (ele.name || ele.categoryId)}
                                     initialParams={{ categoryId: ele.categoryId, name: ele.name }}
                                     component={CategoryElements}
                                 />
